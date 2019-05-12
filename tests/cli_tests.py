@@ -17,6 +17,12 @@ def vendorizing_single_module_with_no_dependencies_grabs_one_module_file():
         assert_equal(b"('one', 1)", result.output.strip())
 
 @istest
+def vendorizing_single_module_with_no_dependencies_grabs_one_module_file():
+    with _vendorize_example("isolated-module-with-pyproject") as project_path:
+        result = _local.run(["python", os.path.join(project_path, "main.py")])
+        assert_equal(b"('one', 1)", result.output.strip())
+
+@istest
 def can_vendorize_local_modules_from_relative_paths():
     with _vendorize_example("local-module") as project_path:
         result = _local.run(["python", os.path.join(project_path, "main.py")])
@@ -32,7 +38,7 @@ def absolute_paths_in_same_distribution_are_rewritten_to_be_relative():
 def _vendorize_example(example_name):
     path = os.path.join(os.path.dirname(__file__), "../examples", example_name)
     _clean_project(path)
-    
+
     _local.run(
         ["python-vendorize"],
         cwd=path,

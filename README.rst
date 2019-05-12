@@ -6,8 +6,9 @@ that is, the Python source of the dependency is copied into your own package.
 Best used for small, pure-Python dependencies to avoid version conflicts
 when other packages require a different version of the same dependency.
 
-Dependencies you want vendorizing should be specified in ``vendorize.toml``.
-``target`` should be a string containing the path where vendorized dependencies should be placed,
+Dependencies you want vendorizing should be specified in ``vendorize.toml`` or
+in a ``tool.vendorize`` section of ``pyproject.toml``.  ``target`` should be a
+string containing the path where vendorized dependencies should be placed,
 relative to the directory that ``vendorize.toml`` is in.
 ``packages`` should be a list of strings containing the dependencies.
 Each of these strings can be anything that ``pip`` would understand,
